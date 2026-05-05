@@ -20,7 +20,7 @@ VIDEO_EXTS = {".mp4", ".mov", ".mkv", ".webm", ".avi", ".m4v", ".ts", ".m2ts"}
 IMAGE_EXTS = {".png", ".jpg", ".jpeg", ".webp", ".bmp", ".tif", ".tiff"}
 
 
-class TektiteVideoCombiner2:
+class TektiteVideoCombiner3:
     CATEGORY = "Tektite/Video"
     FUNCTION = "combine_videos"
     RETURN_TYPES = ("VIDEO", "STRING")
@@ -166,10 +166,10 @@ class TektiteVideoCombiner2:
             time.sleep(max(0.1, float(poll_interval_sec)))
         else:
             raise ValueError(
-                f"Tektite Video Combiner 2.0 timed out after {wait_timeout_sec}s while waiting. Last state: {last_state}"
+                f"Tektite Video Combiner 3.0 timed out after {wait_timeout_sec}s while waiting. Last state: {last_state}"
             )
         print(
-            f"[Tektite Video Combiner 2.0] Ready {expected_clips}/{expected_clips}. Starting normalize+stitch."
+            f"[Tektite Video Combiner 3.0] Ready {expected_clips}/{expected_clips}. Starting normalize+stitch."
         )
 
         ordered_units = clip_units
@@ -251,7 +251,7 @@ class TektiteVideoCombiner2:
         detail_suffix = f" | {'; '.join(details)}" if details else ""
 
         return (
-            f"[Tektite Video Combiner 2.0] Clips ready: {ready_clips}/{expected_clips} | "
+            f"[Tektite Video Combiner 3.0] Clips ready: {ready_clips}/{expected_clips} | "
             f"missing_files={len(missing_files)} unstable_files={len(unstable_files)} | {state}{detail_suffix}"
         )
 
@@ -904,16 +904,16 @@ class TektiteVideoCombiner2:
         os.makedirs(fallback_dir, exist_ok=True)
         fallback_path = os.path.join(fallback_dir, os.path.basename(resolved_output))
         print(
-            f"[Tektite Video Combiner 2.0] Output directory not writable: {out_dir}. "
+            f"[Tektite Video Combiner 3.0] Output directory not writable: {out_dir}. "
             f"Falling back to: {fallback_path}"
         )
         return fallback_path
 
 
 NODE_CLASS_MAPPINGS = {
-    "TektiteVideoCombiner2": TektiteVideoCombiner2,
+    "TektiteVideoCombiner3": TektiteVideoCombiner3,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "TektiteVideoCombiner2": "Tektite Video Combiner 2.0",
+    "TektiteVideoCombiner3": "Tektite Video Combiner 3.0",
 }
